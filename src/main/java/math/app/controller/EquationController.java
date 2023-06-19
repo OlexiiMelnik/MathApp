@@ -35,10 +35,10 @@ public class EquationController {
 
     @PostMapping
     @Operation(summary = "if the equation is correct, we save it in the db")
-    public EquationResponseDto create(@RequestBody String equationString)
+    public EquationResponseDto create(@RequestBody EquationRequestDto requestDto)
             throws InvalidEquationException {
         log.info("method create start" + LocalDateTime.now());
-        return mapper.toDto(equationService.save(equationString));
+        return mapper.toDto(equationService.save(requestDto.getEquationString()));
     }
 
     @DeleteMapping("/{id}")
